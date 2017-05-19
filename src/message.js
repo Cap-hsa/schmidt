@@ -33,7 +33,7 @@ const replyMessage = (message) => {
 
     const rep = (content, action) => {
       if (action) {
-        if (action.slug === 'cuisine') {
+        if (action.slug === 'catalogue_cuisine') {
           return [
             {
               type: 'text',
