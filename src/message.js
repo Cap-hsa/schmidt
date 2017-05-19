@@ -44,7 +44,7 @@ const replyMessage = (message) => {
                 content: {
                   title: 'Catalogue',
                   subtitle: 'Cuisines',
-                  imageUrl: '',
+                  imageUrl: 'https://goo.gl/images/vi7WBE',
                   buttons: [
                     {
                       title: 'Download',
