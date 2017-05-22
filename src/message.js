@@ -45,7 +45,7 @@ const replyMessage = (message) => {
               type: 'card',
               content: {
                 title: 'Catalogue',
-                subtitle: 'Cuisines',
+                subtitle: 'Kitchen story',
                 imageUrl: 'http://www.cuisines-schmidt.com/images/home/image_fond-bak.jpg',
                 buttons: [
                   {
@@ -61,7 +61,7 @@ const replyMessage = (message) => {
               type: 'card',
               content: {
                 title: 'Catalogue',
-                subtitle: 'Salles de bain',
+                subtitle: 'Private story',
                 imageUrl: 'http://www.cuisines-schmidt.com/blog/wp-content/uploads/ARCOS_BAIN_WILD_OAK.jpg',
                 buttons: [
                   {
@@ -72,12 +72,12 @@ const replyMessage = (message) => {
                 ],
               },
             })
-          } else if (action.slug === 'catalogue_tableschaises') {
+          } else if (action.slug === 'catalogue_rangements') {
             responses.push({
               type: 'card',
               content: {
                 title: 'Catalogue',
-                subtitle: 'Tables et chaises',
+                subtitle: 'Life story',
                 imageUrl: 'http://www.schmidt-lannion.com/wp-content/uploads/2015/07/Table-Chaise-6.jpg',
                 buttons: [
                   {
