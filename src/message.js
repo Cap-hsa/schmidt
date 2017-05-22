@@ -31,86 +31,67 @@ const replyMessage = (message) => {
         console.log('The conversation action is: ', result.action.slug)
       }
 
-      const rep = (content, action) => {
-        if (action) {
-          if (action.slug === 'catalogue_cuisine') {
-            return [
-              {
-                type: 'text',
-                content,
-              },
-              {
-                type: 'card',
-                content: {
-                  title: 'Catalogue',
-                  subtitle: 'Cuisines',
-                  imageUrl: 'http://www.cuisines-schmidt.com/images/home/image_fond-bak.jpg',
-                  buttons: [
-                    {
-                      title: 'Download',
-                      type: 'web_url',
-                      value: 'http://www.cuisines-schmidt.com/catalogues_pdf/cuisine/CUISINE_FR.pdf',
-                    },
-                  ],
-                },
-              },
-            ]
-          } else if (action.slug === 'catalogue_sbd') {
-            return [
-              {
-                type: 'text',
-                content,
-              },
-              {
-                type: 'card',
-                content: {
-                  title: 'Catalogue',
-                  subtitle: 'Salles de bain',
-                  imageUrl: 'http://www.cuisines-schmidt.com/blog/wp-content/uploads/ARCOS_BAIN_WILD_OAK.jpg',
-                  buttons: [
-                    {
-                      title: 'Download',
-                      type: 'web_url',
-                      value: 'http://www.cuisines-schmidt.com/catalogues_pdf/sdb/SDB_FR.pdf',
-                    },
-                  ],
-                },
-              },
-            ]
-          } else if (action.slug === 'catalogue_tableschaises') {
-            return [
-              {
-                type: 'text',
-                content,
-              },
-              {
-                type: 'card',
-                content: {
-                  title: 'Catalogue',
-                  subtitle: 'Tables et chaises',
-                  imageUrl: 'http://www.schmidt-lannion.com/wp-content/uploads/2015/07/Table-Chaise-6.jpg',
-                  buttons: [
-                    {
-                      title: 'Download',
-                      type: 'web_url',
-                      value: 'http://www.cuisines-schmidt.com/catalogues_pdf/rgt/RGT_FR.pdf',
-                    },
-                  ],
-                },
-              },
-            ]
-          }
-
-          return {
+      const enrichReply = (content, action) => {
+        const responses = [
+          {
             type: 'text',
             content,
+          },
+        ]
+
+        if (action) {
+          if (action.slug === 'catalogue_cuisine') {
+            responses.push({
+              type: 'card',
+              content: {
+                title: 'Catalogue',
+                subtitle: 'Cuisines',
+                imageUrl: 'http://www.cuisines-schmidt.com/images/home/image_fond-bak.jpg',
+                buttons: [
+                  {
+                    title: 'Download',
+                    type: 'web_url',
+                    value: 'http://www.cuisines-schmidt.com/catalogues_pdf/cuisine/CUISINE_FR.pdf',
+                  },
+                ],
+              },
+            })
+          } else if (action.slug === 'catalogue_sbd') {
+            responses.push({
+              type: 'card',
+              content: {
+                title: 'Catalogue',
+                subtitle: 'Salles de bain',
+                imageUrl: 'http://www.cuisines-schmidt.com/blog/wp-content/uploads/ARCOS_BAIN_WILD_OAK.jpg',
+                buttons: [
+                  {
+                    title: 'Download',
+                    type: 'web_url',
+                    value: 'http://www.cuisines-schmidt.com/catalogues_pdf/sdb/SDB_FR.pdf',
+                  },
+                ],
+              },
+            })
+          } else if (action.slug === 'catalogue_tableschaises') {
+            responses.push({
+              type: 'card',
+              content: {
+                title: 'Catalogue',
+                subtitle: 'Tables et chaises',
+                imageUrl: 'http://www.schmidt-lannion.com/wp-content/uploads/2015/07/Table-Chaise-6.jpg',
+                buttons: [
+                  {
+                    title: 'Download',
+                    type: 'web_url',
+                    value: 'http://www.cuisines-schmidt.com/catalogues_pdf/rgt/RGT_FR.pdf',
+                  },
+                ],
+              },
+            })
           }
         }
 
-        return {
-          type: 'text',
-          content,
-        }
+        return responses
       }
 
       // If there is not any message return by Recast.AI for this current conversation
@@ -118,7 +99,7 @@ const replyMessage = (message) => {
         message.addReply({ type: 'text', content: 'I don\'t have the reply to this yet :)' })
       } else {
         // Add each reply received from API to replies stack
-        result.replies.forEach(replyContent => message.addReply(rep(replyContent, result.action)))
+        result.replies.forEach(replyContent => message.addReply(enrichReply(replyContent, result.action)))
       }
 
       // Send all replies
