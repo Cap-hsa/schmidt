@@ -44,12 +44,56 @@ const replyMessage = (message) => {
                 content: {
                   title: 'Catalogue',
                   subtitle: 'Cuisines',
-                  imageUrl: 'https://goo.gl/images/vi7WBE',
+                  imageUrl: 'http://www.cuisines-schmidt.com/images/home/image_fond-bak.jpg',
                   buttons: [
                     {
                       title: 'Download',
                       type: 'web_url',
                       value: 'http://www.cuisines-schmidt.com/catalogues_pdf/cuisine/CUISINE_FR.pdf',
+                    },
+                  ],
+                },
+              },
+            ]
+          } else if (action.slug === 'catalogue_sbd') {
+            return [
+              {
+                type: 'text',
+                content,
+              },
+              {
+                type: 'card',
+                content: {
+                  title: 'Catalogue',
+                  subtitle: 'Salles de bain',
+                  imageUrl: 'http://www.cuisines-schmidt.com/blog/wp-content/uploads/ARCOS_BAIN_WILD_OAK.jpg',
+                  buttons: [
+                    {
+                      title: 'Download',
+                      type: 'web_url',
+                      value: 'http://www.cuisines-schmidt.com/catalogues_pdf/sdb/SDB_FR.pdf',
+                    },
+                  ],
+                },
+              },
+            ]
+          } else if (action.slug === 'catalogue_tableschaises') {
+            return [
+              {
+                type: 'text',
+                content,
+              },
+              {
+                type: 'card',
+                content: {
+                  title: 'Catalogue',
+                  subtitle: 'Tables et chaises',
+                  imageUrl: 'http://www.schmidt-lannion.com/wp-content/uploads/2015/07/Table-Chaise-6.jpg',
+                  buttons: [
+                    {
+                      title: 'Download',
+                      type: 'web_url',
+                      value: 'http://www.cuisines-schmidt.com/catalogues_pdf/rgt/RGT_FR.pdf',
                     },
                   ],
                 },
@@ -61,6 +105,11 @@ const replyMessage = (message) => {
             type: 'text',
             content,
           }
+        }
+
+        return {
+          type: 'text',
+          content,
         }
       }
 
